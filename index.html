@@ -1,0 +1,190 @@
+<html>
+<head>
+    <title>Matris Çarpımı</title>
+<script>
+
+
+ 
+    function msg()
+	{
+	      /*s00.value = (a00.value*b00.value)+(a01.value*b10.value)+(a02.value*b20.value);
+		  s01.value = (a00.value*b01.value)+(a01.value*b11.value)+(a02.value*b21.value);
+		  s02.value = (a00.value*b02.value)+(a01.value*b12.value)+(a02.value*b22.value);
+		  s10.value = (a10.value*b00.value)+(a11.value*b10.value)+(a12.value*b20.value);
+		  s11.value = (a10.value*b01.value)+(a11.value*b11.value)+(a12.value*b21.value);
+		  s12.value = (a10.value*b02.value)+(a11.value*b12.value)+(a12.value*b22.value);
+		  s20.value = (a20.value*b00.value)+(a21.value*b10.value)+(a22.value*b20.value);
+		  s21.value = (a20.value*b01.value)+(a21.value*b11.value)+(a22.value*b21.value);
+		  s22.value = (a20.value*b02.value)+(a21.value*b12.value)+(a22.value*b22.value);*/
+	    //alert(a00.value);
+		var a  = [[]];
+		var b  =[[]];
+		for (var i=0;i<3;i++){
+		
+			for (var j=0; j<3 ; j++){
+			    //alert(document.getElementById("a"+i+j).value);
+				//alert(document.getElementById("b"+i+j).value);
+				a[i][j] = document.getElementById("a"+i+j).value;
+				b[i][j] = document.getElementById("b"+i+j).value;
+				a.push([]);
+				b.push([]);
+			}
+			
+		}
+		
+		var s = [[]];
+		for(var i =0; i<3; i++){
+		
+			for(var j=0; j<3; j++){
+				s[i][j] = 0;
+				for(var k=0; k<3; k++){
+				
+					s[i][j] = s[i][j]+ (a[i][k]*b[k][j]); 
+					s.push([]);
+					//document.getElementById("s"+i+j).value = s[i][j];
+					
+				}
+				//alert(document.getElementById("s"+i+j).value);
+				document.getElementById("s"+i+j).value = s[i][j];
+			
+			}
+		}
+	
+
+		
+	} 
+</script>	
+</head>
+<body>
+    <h1>Matris Çarpımı</h1>
+	<b>Matris Boyutu</b>
+	<br>
+	<br>A Matrisinin Satır Sayısı&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="m1"><br><br>
+	A'nın Sütun B'nin Satır Sayısı&nbsp&nbsp&nbsp&nbsp<input type="number" id="m2"><br><br>
+	B Matrisinin Sütun Sayısı&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="m3">
+	 
+	<br><br>
+	<script>
+	function MatrisCarp()
+	{
+	
+		var strHTMLs = '<table id="Sonuc" ><caption><b>Sonuc<b></caption>';
+		for( var i=0;i<m1.value;i++){
+			strHTMLs += "<tr>";
+			for (var j=0;j<m3.value;j++){
+	
+				strHTMLs += '<td><input type="number" id="s'+i+j+'"></td>';
+			
+				
+			}
+			strHTMLs += "</tr>";
+		}
+		strHTMLs += "</table>";
+		divMatris3.innerHTML = strHTMLs;
+		
+		
+		var a  = [[]];
+		var b  =[[]];
+		for (var i=0;i<m1.value;i++){
+		
+			for (var j=0; j<m2.value ; j++){
+			    //alert(document.getElementById("a"+i+j).value);
+				//alert(document.getElementById("b"+i+j).value);
+				a[i][j] = document.getElementById("a"+i+j).value;
+				//b[i][j] = document.getElementById("b"+i+j).value;
+				a.push([]);
+				//b.push([]);
+			}
+			
+		}
+		
+		for (var i=0;i<m2.value;i++){
+		
+			for (var j=0; j<m3.value ; j++){
+			    //alert(document.getElementById("a"+i+j).value);
+				//alert(document.getElementById("b"+i+j).value);
+				//a[i][j] = document.getElementById("a"+i+j).value;
+				b[i][j] = document.getElementById("b"+i+j).value;
+				//a.push([]);
+				b.push([]);
+			}
+			
+		}
+		
+		var s = [[]];
+		for(var i =0; i<m1.value; i++){
+		
+			for(var j=0; j<m3.value; j++){
+				s[i][j] = 0;
+				for(var k=0; k<m2.value; k++){
+				
+					s[i][j] = s[i][j]+ (a[i][k]*b[k][j]); 
+					s.push([]);
+					//document.getElementById("s"+i+j).value = s[i][j];
+					//alert(s[i][j]);
+				}
+				//alert(document.getElementById("s"+i+j).value);
+				document.getElementById("s"+i+j).value = s[i][j];
+			
+			}
+		}
+		
+	}
+	function kaydet()
+	{
+		
+		var strHTML = '<br><br><table id="mmatrisA"><caption><b>Matris A<b></caption>';
+		for( var i=0;i<m1.value;i++){
+			strHTML += "<tr>";
+			
+			for (var j=0;j<m2.value;j++){
+				
+				strHTML += '<td><input type="number" id="a'+i+j+'" value=1></td>';
+				//document.getElementById("a"+i+j).value= 1;
+				
+				
+			}
+			strHTML += "</tr>";
+		}
+		
+		strHTML += "</table><br><br>";
+		divMatris.innerHTML = strHTML; 
+		//alert(strHTML);
+		
+	
+		var strHTMLb = '<table id="mmatrisB" ><caption><b>Matris B<b></caption>';
+		for( var i=0;i<m2.value;i++){
+			strHTMLb += "<tr>";
+			for (var j=0;j<m3.value;j++){
+	
+				strHTMLb += '<td><input type="number" id="b'+i+j+'" value=1></td>';
+				//document.getElementById("b"+i+j).value= 1;
+			
+				
+			}
+			strHTMLb += "</tr>";
+		}
+		strHTMLb += "</table>";
+		divMatris1.innerHTML = strHTMLb;
+		
+		var strHTMLc = '<br><br><button onclick="MatrisCarp()">Matrisleri Çarp</button>'
+		divMatris2.innerHTML = strHTMLc;	
+		
+	}
+	</script>
+	<button onclick="kaydet()">Kaydet</button>
+	<br>
+	<div id="divMatris"></div>
+	<div id="divMatris1"></div>
+	<div id="divMatris2"></div>
+	<div id="divMatris3"></div>
+
+
+	<script>
+	document.getElementById("m1").value= 3;
+	document.getElementById("m2").value= 2;
+	document.getElementById("m3").value= 3;
+	</script>
+	
+</script>
+</html>
